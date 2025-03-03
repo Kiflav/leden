@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         carousel.addEventListener("touchend", event => {
-            if (Math.abs(touchEndX - touchStartX) > 30) { // Drempel voor swipe
+            if (Math.abs(touchEndX - touchStartX) > 300) { // Drempel voor swipe
                 // Swipe naar links (volgende slide)
                 if (touchEndX < touchStartX) {
                     index = (index + 1) % dots.length;
