@@ -7826,12 +7826,11 @@ padding: 15px 19px 15px 13px !important;
         transition: transform 0.5s ease-in-out;
 		gap: 0 !important;
 transition: transform 0.5s ease-in-out;
-        overflow-x: hidden;
 
 	}
 	#leden_aanbrengen main section:first-of-type #hoe_werkt .slide{
 		        min-width: 100%;
-		flex-shrink: 0;
+	
 
 	}
 	
