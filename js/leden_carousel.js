@@ -1,43 +1,47 @@
-// VOOR MOBIEL CAROUSEL
 document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.querySelector("#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel");
     const dots = document.querySelectorAll("#leden_aanbrengen main section:first-of-type #hoe_werkt #indicator .dot");
-    var index = 0;
+    const totalSlides = dots.length; // Aantal beschikbare slides
+    let index = 0; // Huidige slide index
 
-    // Functie carousel updaten
+    // Functie om de carousel te updaten
     function updateCarousel() {
         carousel.style.transform = "translateX(-" + (index * 100) + "%)";
         dots.forEach(dot => dot.classList.remove("active"));
         dots[index].classList.add("active");
     }
 
-    //functie voor de bolletjes
+    // EventListener voor de bolletjes (dots)
     dots.forEach((dot, dotIndex) => {
-        dot.addEventListener("click", () => {
+        dot.addEventListener("click", function () {
             index = dotIndex;
             updateCarousel();
         });
     });
 
-    // Swipe functie
-    if (window.innerWidth <= 1768) {
+    // Swipe functionaliteit (voor mobiel)
+    if (window.innerWidth <= 768) {
         let touchStartX = 0;
         let touchEndX = 0;
+        const swipeThreshold = 50; // Minimale afstand voor een geldige swipe
 
-        carousel.addEventListener("touchstart", event => {
+        carousel.addEventListener("touchstart", function (event) {
             touchStartX = event.touches[0].clientX;
         });
 
-        carousel.addEventListener("touchend", event => {
+        carousel.addEventListener("touchend", function (event) {
             touchEndX = event.changedTouches[0].clientX;
+            let swipeDistance = touchEndX - touchStartX;
 
-            // Swipe naar links (volgende slide)
-            if (touchEndX < touchStartX) {
-                index = (index + 1) % dots.length; 
-            }
-            // Swipe naar rechts (vorige slide)
-            else if (touchEndX > touchStartX) {
-                index = (index - 1 + dots.length) % dots.length; 
+            // Controleer of de swipe lang genoeg was
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance < 0 && index < totalSlides - 1) {
+                    // Swipe naar links (volgende slide)
+                    index++;
+                } else if (swipeDistance > 0 && index > 0) {
+                    // Swipe naar rechts (vorige slide)
+                    index--;
+                }
             }
 
             updateCarousel();
@@ -55,3 +59,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCarousel(); // Zorgt ervoor dat de eerste slide correct wordt weergegeven
 });
+
