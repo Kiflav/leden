@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Swipe functie
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1768) {
         let touchStartX = 0;
         let touchEndX = 0;
 
