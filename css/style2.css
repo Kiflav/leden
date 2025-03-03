@@ -1,0 +1,544 @@
+:root {
+    --white: #ffffff;
+    --black: #000000;
+    --ec-black: #323232;
+    --orange: #ff9900;
+    --blue: #030479;
+    --blue-button-hover: #020358;
+    --menu-blue: #080d82;
+    --bg-blue: linear-gradient(73.63deg, #54C4C6 0%, #54C5C7 59.69%, #8CECEE 100%);
+    --bg-light-blue: #7ADFE2;
+    --bg-white: #ffffff;
+    --bg-light-gray: #EDEDED;
+    --bg-gray: #F0F0F0;
+    --card-border: #ebebeb;
+    --pc-card-01: #3DB8A1;
+    --pc-card-02: #FFA655;
+    --pc-card-03: #A2E246;
+    --pc-card-04: #4492FF;
+    --pc-card-05: #504DF1;
+    --pc-card-06: #42BFE7;
+    --pc-card-07: #EFE73C;
+    --pc-card-08: #AD5DEB;
+    --orange-button: var(--orange);
+    --orange-button-hover: #ee8f00;
+    --checked-list-item: #8AC03A;
+    --social-circle-link: #667;
+    --social-circle-link-hover: #DEDEDE;
+    --fa-facebook: #1877F2;
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 5px 0 rgba(0, 0, 0, .2);
+    --tw-shadow-colored: 0 0 #0000;
+}
+html {
+    scroll-behavior: smooth;
+}
+:focus {
+    outline: none !important;
+}
+.bold {
+    font-weight: bold;
+}
+.nobreak, .text-nowrap {
+    white-space: nowrap;
+}
+.d-flex {
+    display: flex !important;
+}
+.justify-content-start {
+    justify-content: flex-start;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.justify-content-end {
+    justify-content: flex-end;
+}
+.flex-column {
+    flex-direction: column !important;
+}
+.text-center {
+    text-align: center;
+}
+.nowrap {
+    white-space: nowrap;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+h3, .h3 {
+    font-size: 24px;
+    line-height: 1.4;
+    margin: 0 0 0px 0px;
+    display: flex;
+    min-height: unset;
+    font-weight: bold;
+    align-items: center;
+}
+.hide-on-desktop, .hide-on-mobile {
+    display: none;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.container.skyskraper-size.homemember {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 50px;
+}
+#ec-cards .row, #pc-cards .row, #about .row, section > .row.text-center {
+    margin-top: 0px;
+}
+a {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+a.more-link {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--ec-black);
+    text-align: right;
+}
+img {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+/*skyscrapers*/
+#moodLink1, #moodLink2 {
+    top: 232px;
+}
+.navbar-nav {
+    margin: 1.5px -15px;
+}
+.text-container section.press {
+    text-align: center;
+}
+.white-bg {
+    background-color: var(--bg-white);
+    color: var(--black) !important;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+section {
+    padding: 20px 20px;
+    scroll-margin-top: 200px;
+    background-color: var(--bg-white);
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+/* button */
+section.press {
+    font-size: 24px;
+    padding: 20px;
+    min-height: unset !important;
+}
+section.press button {
+    background-color: var(--orange-button);
+}
+section.press button:hover, section.press button.hover {
+    background-color: var(--orange-button-hover);
+}
+section.press button.press {
+    padding: 8px 25px !important;
+}
+.registratie-formulier section.press {
+    padding: 0;
+}
+/* cards */
+.cards-container {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+}
+.cards-container a {
+	text-decoration:none;
+}
+.card article span {
+    font-size: 14px;
+}
+.card article span:focus, .card article span:visited {
+    text-decoration:none;
+}
+#ec-cards article span.ellipsis {
+    display: block !important;
+}
+#ec-cards .cards-container, #pc-cards .cards-container, #cadeau-cards .cards-container {
+    margin-bottom: 20px;
+}
+.card {
+    background: white;
+    text-decoration: none;
+    color: var(--ec-black);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+    top: 0;
+    transition: all .1s ease-in;
+    max-width: 200px;
+    min-width: 150px;
+    margin: 0 auto;
+    width: 100%;
+    border: 1px solid var(--card-border);
+}
+.card a {
+    font-family: "Ubuntu", Arial, sans-serif;
+}
+.card a:hover {
+    text-decoration: none;
+    color: var(--ec-black);
+}
+.card:hover {
+    top: -2px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+.card article {
+    padding: 17px;
+    border-top: 1px solid var(--card-border);
+    text-align: center;
+    font-size: 14px;
+}
+.card article span.provider-name {
+    color: var(--orange) !important;
+    font-size: 16px;
+    display:block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height:1.8;
+}
+.card article:has(.provider-name) {
+    line-height: 25px;
+}
+.card .thumb {
+    min-height: 80px;
+    margin: 18px;
+}
+#ec-cards .thumb{
+  display: flex;
+  justify-content: center;
+}
+#ec-cards .card .card-image{
+  max-width: 150px;
+  max-height: 80px;
+  object-fit: contain;
+  width: 100%;
+}
+#cadeau-cards .card .thumb {
+    border-radius: 10px;
+    min-height: unset;
+    margin: 18px 18px 0px 18px;
+}
+#cadeau-cards .card .thumb img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--tw-shadow);
+    overflow: hidden;
+}
+#cadeau-cards .card article {
+    border-top: none;
+}
+/* typography */
+.card h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+}
+.card p {
+    line-height: 1.8;
+}
+.card article span {
+    font-family: "Ubuntu", Arial, sans-serif;
+    color: var(--ec-black);
+    line-height: 1.4;
+}
+@media only screen and (min-width: 320px) {
+    .hide-on-desktop {
+        display: block;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+}
+/* min width in bootstrap 3 doesn't always work well with display block, sometimes you have to reset previous state or else it stays hidden */
+@media only screen and (min-width: 320px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+    #pc-cards .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #pc-cards .card-url:nth-child(n+5) {
+        display: none;
+    }
+    #ec-cards .card:nth-child(n+7), 
+    #cadeau-cards .card:nth-child(n+7) {
+        display: none;
+    }
+}
+@media only screen and (min-width: 360px) {
+    .card {
+        min-width: 105px;
+    }
+    .card article {
+        padding: 10px 5px !important;
+    }
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+    #cadeau-cards .card:nth-child(n+7), #ec-cards .card:nth-child(n+7) {
+        display: none;
+    }
+    #pc-cards .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #pc-cards .card-url:nth-child(n+5) {
+        display: none;
+    }
+}
+@media only screen and (min-width: 400px) and (max-width: 499px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .card {
+        min-width: 120px;
+    }
+    .card .thumb {
+        margin: 10px;
+    }
+    #cadeau-cards .card:nth-child(n+7), #ec-cards .card:nth-child(n+7) {
+        display: none;
+    }
+    #pc-cards .card .thumb {
+        margin: 0px !important;
+    }
+    #pc-cards .card-url:nth-child(n+5) {
+        display: none;
+    }  
+}
+@media only screen and (min-width: 500px) and (max-width: 767px){
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #ec-cards .card:nth-child(n+7), #cadeau-cards .card:nth-child(n+7) {
+        display: block; /*reset previous state or else it stays hidden*/
+    }
+    #cadeau-cards .card:nth-child(n+7), #ec-cards .card:nth-child(n+7) {
+        display: none;
+    }
+    #pc-cards .cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #pc-cards .card-url:nth-child(n+7) {
+        display: block; /*reset previous state or else it stays hidden*/
+    }
+    #pc-cards .card-url:nth-child(n+4) {
+        display: none;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .cards-container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
+    }
+    #ec-cards .card:nth-child(n+7), #cadeau-cards .card:nth-child(n+7) {
+        display: block; /*reset previous state or else it stays hidden*/
+    }    
+    #ec-cards .card:nth-child(n+9), #cadeau-cards .card:nth-child(n+9) {
+        display: none;
+    }
+    #pc-cards .cards-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    #pc-cards .card-url:nth-child(n+5) {
+        display: none;
+    }
+    .hide-on-mobile {
+        display: block;
+    }
+    .hide-on-desktop {
+        display: none;
+    }
+}
+@media only screen and (max-width: 768px) {
+    a.more-link {
+        color: var(--blue);
+    }
+}
+@media only screen and (min-width: 415px) and (max-width: 768px) {
+    .container.skyskraper-size.homemember {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+@media only screen and (max-width: 440px) {
+    .container.skyskraper-size.homemember {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .card .thumb {
+        margin: 10px;
+    }
+    .card article span {
+        font-size: 14px !important;
+    }
+}
+#ec-cards h3::before, #pc-cards h3::before, #cadeau-cards h3::before {
+    margin-right: 10px;
+}
+#ec-cards .card article, #pc-cards .card article, #cadeau-cards .card article {
+    font-size: 14px;
+}
+#pc-cards .card article {
+    font-size: 14px;
+    padding: 10px !important;
+}
+#ec-cards h3::before {
+    content: url('https://img.euroclix.nl/images/redesign/homemember/shopping.svg');
+}
+#pc-cards h3::before {
+    content: url('https://img.euroclix.nl/images/redesign/homemember/market_research.svg');
+}
+#cadeau-cards h3::before {
+    content: url('https://img.euroclix.nl/images/redesign/homemember/giftcards.svg');
+}
+section p {
+    font-size: 14px;
+    font-family: "Ubuntu", Arial, sans-serif;
+}
+section.press {
+    text-align: center;
+}
+section.press button {
+    max-width: 360px;
+}
+#pc-cards .card {
+    overflow: hidden;
+}
+#pc-cards .card.item-1 .pc-color {
+    background-color: var(--pc-card-01);
+}
+#pc-cards .card.item-2 .pc-color {
+    background-color: var(--pc-card-02);
+}
+#pc-cards .card.item-3 .pc-color {
+    background-color: var(--pc-card-03);
+}
+#pc-cards .card.item-4 .pc-color {
+    background-color: var(--pc-card-04);
+}
+#pc-cards .card.item-5 .pc-color {
+    background-color: var(--pc-card-05);
+}
+#pc-cards .card.item-6 .pc-color {
+    background-color: var(--pc-card-06);
+}
+#pc-cards .card.item-7 .pc-color {
+    background-color: var(--pc-card-07);
+}
+#pc-cards .card.item-8 .pc-color {
+    background-color: var(--pc-card-08);
+}
+.thumb.pc-color {
+    margin: 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 20px;
+}
+.thumb .card-image {
+    display: flex;
+    align-self: center;
+}
+.pc-article div.card-title {
+    min-height: 27px;
+}
+#pc-cards .thumb .card-image {
+    height: 85px;
+}
+.pc-article div:not(:last-child) {
+    margin-bottom: 5px;
+}
+.pc-article .card-title, .pc-article .card-time, .pc-article .card-earning {
+    font-size: 14px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+.pc-article .card-title:before, .pc-article .card-time:before, .pc-article .card-earning:before {
+    padding-right: 5px;
+}
+.pc-article .card-title:before {
+    content: url('https://img.euroclix.nl/images/redesign/registreren/card-title.svg');
+}
+.pc-article .card-time:before {
+    content: url('https://img.euroclix.nl/images/redesign/registreren/card-time.svg');
+}
+.pc-article .card-earning:before {
+    content: url('https://img.euroclix.nl/images/redesign/registreren/value.svg');
+}
+.pc-article .card-time, .pc-article .card-earning {
+    flex-wrap: wrap;
+}
+.navbar-form {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+.btn.btn-default {
+    margin: 0;
+}
+.input-group-btn .btn-default:not(.btn-fill) {
+    border-color: var(--blue);
+    background-color: var(--blue);
+}
+
+/* leaderbord banner:  desktop=728x90, mobile=346x90
+   custom xl banner:   desktop=1020x150, mobile=947x150 */
+   
+section.banner-container {
+    width: 100%;
+    height: unset;
+    background-color: transparent;
+    border-radius: 6px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+section.banner-container > div {
+    max-width: 1020px;
+    overflow: hidden;
+    border: 1px solid #C6C6C6;
+    border-radius: 3px;
+}
+.shadow-giftcard-image {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .2);
+}
