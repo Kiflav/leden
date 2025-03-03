@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Functie om de carousel te updaten
     function updateCarousel() {
+        carousel.style.transition = "transform 0.3s ease-in-out"; // Animatie toevoegen
         carousel.style.transform = `translateX(-${index * 100}%)`;
         dots.forEach(dot => dot.classList.remove("active"));
         dots[index].classList.add("active");
@@ -22,10 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Swipe functionaliteit
+    // Swipe functionaliteit (verbeterd voor Safari)
     if (window.innerWidth <= 768) {
         carousel.addEventListener("touchstart", function (event) {
             touchStartX = event.touches[0].clientX;
+            touchEndX = touchStartX; // Direct instellen om kleine bewegingen te negeren
         });
 
         carousel.addEventListener("touchmove", function (event) {
@@ -37,17 +39,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (Math.abs(swipeDistance) > swipeThreshold) {
                 if (swipeDistance < 0 && index < slides.length - 1) {
-                    // Swipe naar links (volgende slide)
-                    index++;
+                    index++; // Swipe naar links (volgende slide)
                 } else if (swipeDistance > 0 && index > 0) {
-                    // Swipe naar rechts (vorige slide)
-                    index--;
+                    index--; // Swipe naar rechts (vorige slide)
                 }
             }
 
             updateCarousel();
         });
+
+        // Fix voor Safari: Voorkom dat Safari de swipe als "scroll" ziet
+        carousel.addEventListener("touchmove", function (event) {
+            event.preventDefault(); // Blokkeert scrollen tijdens swipe
+        }, { passive: false });
     }
 
-    updateCarousel(); // Zorgt ervoor dat de eerste slide correct wordt weergegeven
+    updateCarousel(); // Start met de juiste slide
 });
