@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    // Functie om de carousel te updaten
+    // Functie carousel updaten
     function updateCarousel() {
         carousel.style.transform = "translateX(-" + (index * 100) + "%)";
         dots.forEach(dot => dot.classList.remove("active"));
@@ -48,6 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
             touchEndX = 0;
         });
     }
+
+    // Voeg een click-event toe voor desktop of als fallback bij mobiele devices (indien nodig)
+    carousel.addEventListener("click", () => {
+        // Als de gebruiker op de carousel klikt (voor desktop bijvoorbeeld) kan het ook werken
+        index = (index + 1) % dots.length;
+        updateCarousel();
+    });
 
     // Reset carousel bij resize
     window.addEventListener("resize", function () {
