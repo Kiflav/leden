@@ -1,51 +1,53 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const carousel = document.querySelector("#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel");
     const slides = document.querySelectorAll("#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel .slide");
     const dots = document.querySelectorAll("#leden_aanbrengen main section:first-of-type #hoe_werkt #indicator .dot");
-    let index = 0;
+
+    let index = 0;  // Huidige slide-index
     let touchstartX = 0;
     let touchendX = 0;
 
-    // Functie om de carousel bij te werken
+    // Update de carousel
     function updateCarousel() {
         carousel.style.transform = "translateX(-" + (index * 100) + "%)";
         dots.forEach(dot => dot.classList.remove("active"));
         dots[index].classList.add("active");
     }
 
-    // Functie om de swipe richting te controleren
+    // Check de swipe richting en update de index
     function checkDirection() {
-        if (touchendX < touchstartX) { // Swipe naar links
-            index = (index + 1) % slides.length;
-        } else if (touchendX > touchstartX) { // Swipe naar rechts
-            index = (index - 1 + slides.length) % slides.length;
+        if (touchendX < touchstartX) {
+            index = (index + 1) % slides.length;  // Volgende slide
+        } else if (touchendX > touchstartX) {
+            index = (index - 1 + slides.length) % slides.length;  // Vorige slide
         }
         updateCarousel();
     }
 
-    // Event listeners voor het swipen
-    carousel.addEventListener('touchstart', function(e) {
-        touchstartX = e.changedTouches[0].screenX; // Begin van de touch
+    // Touchstart event
+    carousel.addEventListener('touchstart', function (e) {
+        touchstartX = e.changedTouches[0].screenX;
     });
 
-    carousel.addEventListener('touchend', function(e) {
-        touchendX = e.changedTouches[0].screenX; // Eind van de touch
-        checkDirection(); // Controleer de richting
+    // Touchend event
+    carousel.addEventListener('touchend', function (e) {
+        touchendX = e.changedTouches[0].screenX;
+        checkDirection();
     });
 
-    // Event listeners voor het klikken op de bolletjes
+    // Klikken op de bolletjes
     dots.forEach((dot, dotIndex) => {
-        dot.addEventListener("click", () => {
+        dot.addEventListener("click", function () {
             index = dotIndex;
             updateCarousel();
         });
     });
 
-    // Zorg ervoor dat de carousel juist wordt weergegeven op laden
+    // Initialiseer de carousel (zorg ervoor dat deze correct start)
     updateCarousel();
 
-    // Reset transform wanneer scherm breder wordt dan 768px
-    window.addEventListener('resize', function() {
+    // Reset de carousel wanneer het scherm groter wordt dan 768px
+    window.addEventListener('resize', function () {
         if (window.innerWidth > 768) {
             carousel.style.transform = "translateX(0)";
         } else {
