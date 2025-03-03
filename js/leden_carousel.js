@@ -5,65 +5,83 @@ document.addEventListener("DOMContentLoaded", function () {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    // Functie carousel updaten
+    // Functie om de carousel up te daten
     function updateCarousel() {
         carousel.style.transform = "translateX(-" + (index * 100) + "%)";
+        setIndicator();
+    }
+
+    // Functie om de indicator bij te werken
+    function setIndicator() {
         dots.forEach(dot => dot.classList.remove("active"));
         dots[index].classList.add("active");
     }
 
-    // Functie voor de bolletjes
-    dots.forEach((dot, dotIndex) => {
-        dot.addEventListener("click", () => {
-            index = dotIndex;
-            updateCarousel();
-        });
-    });
+    // Functie om touchstart af te handelen
+    function handleTouchStart(event) {
+        touchStartX = event.touches[0].clientX;
+    }
 
-    // Swipe functie
-    if (window.innerWidth <= 768) {
-        carousel.addEventListener("touchstart", event => {
-            touchStartX = event.touches[0].clientX;
-        });
+    // Functie om touchend af te handelen
+    function handleTouchEnd(event) {
+        touchEndX = event.changedTouches[0].clientX;
 
-        carousel.addEventListener("touchmove", event => {
-            touchEndX = event.touches[0].clientX;
-        });
-
-        carousel.addEventListener("touchend", event => {
-            // Bereken het verschil in bewegingen (drempelwaarde ingesteld op 30px)
-            if (Math.abs(touchEndX - touchStartX) > 30) {
-                // Swipe naar links (volgende slide)
-                if (touchEndX < touchStartX) {
-                    index = (index + 1) % dots.length;
-                }
-                // Swipe naar rechts (vorige slide)
-                else if (touchEndX > touchStartX) {
-                    index = (index - 1 + dots.length) % dots.length;
-                }
-                updateCarousel();
+        // Check of de swipe genoeg verschuiving heeft
+        if (Math.abs(touchEndX - touchStartX) > 30) {
+            // Swipe naar links (volgende slide)
+            if (touchEndX < touchStartX) {
+                index = (index + 1) % dots.length;
             }
-            // Reset de waarden van touchstart en touchend om ervoor te zorgen dat het goed herkend wordt
-            touchStartX = 0;
-            touchEndX = 0;
+            // Swipe naar rechts (vorige slide)
+            else if (touchEndX > touchStartX) {
+                index = (index - 1 + dots.length) % dots.length;
+            }
+
+            updateCarousel();
+        }
+        // Reset de waarden van touchStart en touchEnd
+        touchStartX = 0;
+        touchEndX = 0;
+    }
+
+    // Functie om op een dot te klikken (om naar een specifieke slide te gaan)
+    function handleDotClick(dotIndex) {
+        index = dotIndex;
+        updateCarousel();
+    }
+
+    // Functie om de swipe-functionaliteit in te stellen
+    function initSwipe() {
+        carousel.addEventListener("touchstart", handleTouchStart);
+        carousel.addEventListener("touchend", handleTouchEnd);
+    }
+
+    // Functie om de klikfunctionaliteit in te stellen voor de dots
+    function initDots() {
+        dots.forEach((dot, dotIndex) => {
+            dot.addEventListener("click", () => handleDotClick(dotIndex));
         });
     }
 
-    // Voeg een click-event toe voor desktop of als fallback bij mobiele devices (indien nodig)
-    carousel.addEventListener("click", () => {
-        // Als de gebruiker op de carousel klikt (voor desktop bijvoorbeeld) kan het ook werken
-        index = (index + 1) % dots.length;
+    // Functie om de carousel opnieuw in te stellen op grotere schermen
+    function initResize() {
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 768) {
+                carousel.style.transform = "translateX(0)";
+            } else {
+                updateCarousel();
+            }
+        });
+    }
+
+    // Functie om alles in te stellen bij het laden van de pagina
+    function initCarousel() {
         updateCarousel();
-    });
+        initSwipe();
+        initDots();
+        initResize();
+    }
 
-    // Reset carousel bij resize
-    window.addEventListener("resize", function () {
-        if (window.innerWidth > 768) {
-            carousel.style.transform = "translateX(0)";
-        } else {
-            updateCarousel();
-        }
-    });
-
-    updateCarousel(); // Start de carousel met de eerste slide
+    // Start de carousel
+    initCarousel();
 });
