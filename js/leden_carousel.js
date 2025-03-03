@@ -1,39 +1,17 @@
+// VOOR MOBIEL CAROUSEL
 document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.querySelector("#hoe_werkt .carousel");
-    const slides = document.querySelectorAll("#hoe_werkt .slide");
-    const dots = document.querySelectorAll("#indicator .dot");
+    const carousel = document.querySelector("#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel");
+    const dots = document.querySelectorAll("#leden_aanbrengen main section:first-of-type #hoe_werkt #indicator .dot");
+    var index = 0;
 
-    let index = 0;
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const swipeThreshold = 50; // Minimale swipe-afstand
-
+    // Functie carousel updaten
     function updateCarousel() {
-        carousel.style.transform = `translateX(-${index * 100}%)`;
+        carousel.style.transform = "translateX(-" + (index * 100) + "%)";
         dots.forEach(dot => dot.classList.remove("active"));
         dots[index].classList.add("active");
     }
 
-    function checkSwipe() {
-        if (touchEndX < touchStartX - swipeThreshold && index < slides.length - 1) {
-            index++; // Swipe naar links
-        } else if (touchEndX > touchStartX + swipeThreshold && index > 0) {
-            index--; // Swipe naar rechts
-        }
-        updateCarousel();
-    }
-
-    // Event listeners voor swipe
-    carousel.addEventListener("touchstart", e => {
-        touchStartX = e.touches[0].clientX;
-    });
-
-    carousel.addEventListener("touchend", e => {
-        touchEndX = e.changedTouches[0].clientX;
-        checkSwipe();
-    });
-
-    // Dots functionaliteit
+    //functie voor de bolletjes
     dots.forEach((dot, dotIndex) => {
         dot.addEventListener("click", () => {
             index = dotIndex;
@@ -41,5 +19,39 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    updateCarousel();
+    // Swipe functie
+    if (window.innerWidth <= 768) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener("touchstart", event => {
+            touchStartX = event.touches[0].clientX;
+        });
+
+        carousel.addEventListener("touchend", event => {
+            touchEndX = event.changedTouches[0].clientX;
+
+            // Swipe naar links (volgende slide)
+            if (touchEndX < touchStartX) {
+                index = (index + 1) % dots.length; 
+            }
+            // Swipe naar rechts (vorige slide)
+            else if (touchEndX > touchStartX) {
+                index = (index - 1 + dots.length) % dots.length; 
+            }
+
+            updateCarousel();
+        });
+    }
+
+    // Reset transform wanneer scherm breder wordt dan 768px
+    window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) {
+            carousel.style.transform = "translateX(0)"; // Reset carousel
+        } else {
+            updateCarousel(); // Zorgt ervoor dat de juiste slide getoond wordt
+        }
+    });
+
+    updateCarousel(); // Zorgt ervoor dat de eerste slide correct wordt weergegeven
 });
