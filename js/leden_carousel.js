@@ -44,14 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Reset transform wanneer scherm breder wordt dan 768px
+
     window.addEventListener("resize", function () {
         if (window.innerWidth > 768) {
-            carousel.style.transform = "translateX(0)"; // Reset carousel
+            carousel.style.transform = "translateX(0)"; 
         } else {
-            updateCarousel(); // Zorgt ervoor dat de juiste slide getoond wordt
+            updateCarousel(); 
         }
     });
 
-    updateCarousel(); // Zorgt ervoor dat de eerste slide correct wordt weergegeven
+    updateCarousel(); 
 });
