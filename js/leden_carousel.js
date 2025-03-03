@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-//    window.addEventListener("resize", function () {
-//        if (window.innerWidth > 768) {
-//            carousel.style.transform = "translateX(0)"; 
-//        } else {
-//            updateCarousel(); 
-//        }
-//    });
+   window.addEventListener("resize", function () {
+       if (window.innerWidth > 768) {
+           carousel.style.transform = "translateX(0)"; 
+       } else {
+           updateCarousel(); 
+       }
+   });
 
     updateCarousel(); 
 });
