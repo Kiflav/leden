@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.querySelector("#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel");
     const dots = document.querySelectorAll("#leden_aanbrengen main section:first-of-type #hoe_werkt #indicator .dot");
-    var index = 0;
+    let index = 0;
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         carousel.addEventListener("touchend", event => {
-            if (Math.abs(touchEndX - touchStartX) > 300) { // Drempel voor swipe
+            // Bereken het verschil in bewegingen (drempelwaarde ingesteld op 30px)
+            if (Math.abs(touchEndX - touchStartX) > 30) {
                 // Swipe naar links (volgende slide)
                 if (touchEndX < touchStartX) {
                     index = (index + 1) % dots.length;
@@ -42,10 +43,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 updateCarousel();
             }
+            // Reset de waarden van touchstart en touchend om ervoor te zorgen dat het goed herkend wordt
+            touchStartX = 0;
+            touchEndX = 0;
         });
     }
 
-    // Reset carousel op resize
+    // Reset carousel bij resize
     window.addEventListener("resize", function () {
         if (window.innerWidth > 768) {
             carousel.style.transform = "translateX(0)";
@@ -54,5 +58,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    updateCarousel();
+    updateCarousel(); // Start de carousel met de eerste slide
 });
