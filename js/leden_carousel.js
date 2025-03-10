@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.querySelector("#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel");
     const dots = document.querySelectorAll("#leden_aanbrengen main section:first-of-type #hoe_werkt #indicator .dot");
@@ -6,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let touchEndX = 0;
 
     function updateCarousel() {
-        carousel.style.transform = `translateX(-${index * 100}%)`;
+        carousel.style.transform = "translateX(-" + (index * 100) + "%)";
         setIndicator();
         carousel.offsetHeight; // Forceer reflow
-        console.log("Updated to index:", index);
+
     }
 
     function setIndicator() {
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function handleTouchStart(event) {
         touchStartX = event.touches[0].clientX;
-        console.log("Touch start at:", touchStartX);
+
     }
 
     function handleTouchMove(event) {
@@ -29,9 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function handleTouchEnd(event) {
         touchEndX = event.changedTouches[0].clientX;
         const swipeDistance = touchEndX - touchStartX;
-        console.log("Touch end at:", touchEndX, "Swipe distance:", swipeDistance);
 
-        if (Math.abs(swipeDistance) > 50) {
+
+        if (Math.abs(swipeDistance) > 60) {
             if (swipeDistance < 0) {
                 index = (index + 1) % dots.length;
             } else {
