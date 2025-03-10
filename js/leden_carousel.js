@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let touchStartX = 0;
     let touchEndX = 0;
 
+    // Functie om de carousel up te daten
     function updateCarousel() {
-        carousel.style.transform = `translateX(-${index * 100}%)`;
+        carousel.style.transform = "translateX(-" + (index * 100) + "%)";
         setIndicator();
-        // Forceer reflow op iOS
-        carousel.offsetHeight; // Trigger reflow
     }
 
+    // Functie om de bullets bij te werken
     function setIndicator() {
         dots.forEach(dot => dot.classList.remove("active"));
         dots[index].classList.add("active");
@@ -22,32 +22,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function handleTouchMove(event) {
+        // Optioneel: voorkom scrollen of ander standaardgedrag
+        event.preventDefault();
         touchEndX = event.touches[0].clientX;
     }
 
     function handleTouchEnd(event) {
         touchEndX = event.changedTouches[0].clientX;
-        const swipeDistance = touchEndX - touchStartX;
 
-        if (Math.abs(swipeDistance) > 50) {
-            if (swipeDistance < 0) {
-                // Swipe naar links
+        if (Math.abs(touchEndX - touchStartX) > 60) { 
+            // Swipe naar links (volgende slide)
+            if (touchEndX < touchStartX) {
                 index = (index + 1) % dots.length;
-            } else {
-                // Swipe naar rechts
+            }
+            // Swipe naar rechts (vorige slide)
+            else if (touchEndX > touchStartX) {
                 index = (index - 1 + dots.length) % dots.length;
             }
+
             updateCarousel();
         }
+        // Reset
         touchStartX = 0;
         touchEndX = 0;
     }
 
+    // Dot klikken functie
     function handleDotClick(dotIndex) {
         index = dotIndex;
         updateCarousel();
     }
 
+    // Swipe functie
     function initSwipe() {
         carousel.addEventListener("touchstart", handleTouchStart, { passive: false });
         carousel.addEventListener("touchmove", handleTouchMove, { passive: false });
