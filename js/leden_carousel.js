@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function handleTouchEnd(event) {
         touchEndX = event.changedTouches[0].clientX;
 
-        if (Math.abs(touchEndX - touchStartX) > 50) { // Drempel iets verhoogd voor betere detectie
+        if (Math.abs(touchEndX - touchStartX) > 60) { // Drempel iets verhoogd voor betere detectie
             // Swipe naar links (volgende slide)
             if (touchEndX < touchStartX) {
                 index = (index + 1) % dots.length;
