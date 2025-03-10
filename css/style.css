@@ -7405,7 +7405,6 @@ height: 26px;
 }
 #welkomscherm main .carousel-container .carousel {
     display: flex;
-    transition: transform 0.5s ease-in-out;
 }
 #welkomscherm main .panel-cards {
     display: flex;
@@ -7823,9 +7822,7 @@ padding: 15px 19px 15px 13px !important;
 	}
 	#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel{
         width: 100%;
-        transition: transform 0.5s ease-in-out;
 		gap: 0 !important;
-transition: transform 0.5s ease-in-out;
 		touch-action: pan-x;
 
 	}
