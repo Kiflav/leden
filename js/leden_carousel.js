@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    // Functie om de carousel up te daten
     function updateCarousel() {
-        carousel.style.transform = "translateX(-" + (index * 100) + "%)";
+        carousel.style.transform = `translateX(-${index * 100}%)`;
         setIndicator();
+        carousel.offsetHeight; // Forceer reflow
+        console.log("Updated to index:", index);
     }
 
-    // Functie om de bullets bij te werken
     function setIndicator() {
         dots.forEach(dot => dot.classList.remove("active"));
         dots[index].classList.add("active");
@@ -19,45 +19,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function handleTouchStart(event) {
         touchStartX = event.touches[0].clientX;
+        console.log("Touch start at:", touchStartX);
     }
 
     function handleTouchMove(event) {
-        // Optioneel: voorkom scrollen of ander standaardgedrag
-        event.preventDefault();
         touchEndX = event.touches[0].clientX;
     }
 
     function handleTouchEnd(event) {
         touchEndX = event.changedTouches[0].clientX;
+        const swipeDistance = touchEndX - touchStartX;
+        console.log("Touch end at:", touchEndX, "Swipe distance:", swipeDistance);
 
-        if (Math.abs(touchEndX - touchStartX) > 60) { 
-            // Swipe naar links (volgende slide)
-            if (touchEndX < touchStartX) {
+        if (Math.abs(swipeDistance) > 50) {
+            if (swipeDistance < 0) {
                 index = (index + 1) % dots.length;
-            }
-            // Swipe naar rechts (vorige slide)
-            else if (touchEndX > touchStartX) {
+            } else {
                 index = (index - 1 + dots.length) % dots.length;
             }
-
             updateCarousel();
+            // Herstart swipe-listeners na elke swipe
+            removeSwipeListeners();
+            initSwipe();
         }
-        // Reset
         touchStartX = 0;
         touchEndX = 0;
     }
 
-    // Dot klikken functie
-    function handleDotClick(dotIndex) {
-        index = dotIndex;
-        updateCarousel();
+    function removeSwipeListeners() {
+        carousel.removeEventListener("touchstart", handleTouchStart);
+        carousel.removeEventListener("touchmove", handleTouchMove);
+        carousel.removeEventListener("touchend", handleTouchEnd);
     }
 
-    // Swipe functie
     function initSwipe() {
         carousel.addEventListener("touchstart", handleTouchStart, { passive: false });
         carousel.addEventListener("touchmove", handleTouchMove, { passive: false });
         carousel.addEventListener("touchend", handleTouchEnd, { passive: false });
+        console.log("Swipe listeners initialized");
+    }
+
+    function handleDotClick(dotIndex) {
+        index = dotIndex;
+        updateCarousel();
+        removeSwipeListeners();
+        initSwipe(); // Reset listeners na dot-klik
     }
 
     function initDots() {
