@@ -7814,7 +7814,13 @@ padding: 15px 19px 15px 13px !important;
 	}
 	
 	#leden_aanbrengen main section:first-of-type #hoe_werkt {
-        width: 100%;
+		max-width: 100%;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+	}
+	#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel{
+         width: 100%;
         transition: transform 0.5s ease-in-out;
         gap: 0 !important;
         display: flex;
@@ -7822,14 +7828,8 @@ padding: 15px 19px 15px 13px !important;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
         will-change: transform;
-        -webkit-overflow-scrolling: touch; /* Verbeter touch-gedrag op iOS */
-        backface-visibility: hidden; /* Voorkom flickering */
-	}
-	#leden_aanbrengen main section:first-of-type #hoe_werkt .carousel{
-        width: 100%;
-        transition: transform 0.5s ease-in-out;
-		gap: 0 !important;
-		will-change: transform;
+        -webkit-overflow-scrolling: touch; 
+        backface-visibility: hidden; 
 
 	}
 	#leden_aanbrengen main section:first-of-type #hoe_werkt .slide{
