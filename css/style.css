@@ -7999,7 +7999,9 @@ border: none;
     align-items: center;
     justify-content: center;
     gap: 27px;
+    max-width: 253px;
     width: 100%;
+	transform: translateZ(0);
 }
 #leden_aanbrengen main section:first-of-type #hoe_werkt div:first-of-type .divider3 {
     height: 1px;
